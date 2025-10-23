@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Назерке 💖</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      height: 100vh;
+      background: radial-gradient(circle at top left, #ffc6f9, #a87dff);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 2.2em;
+      text-shadow: 0 0 15px rgba(255,255,255,0.7);
+      animation: fadeIn 2s ease-in-out;
+      margin-bottom: 20px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    #text {
+      font-size: 1.2em;
+      line-height: 1.7;
+      max-width: 700px;
+      padding: 0 20px;
+      text-shadow: 0 0 10px rgba(255,255,255,0.4);
+      white-space: pre-line;
+      animation: fadeIn 2.5s ease-in-out;
+    }
+
+    .heart {
+      font-size: 2.5em;
+      animation: heartbeat 1.3s infinite ease-in-out;
+      margin-bottom: 10px;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.3); }
+    }
+
+    .floating {
+      position: absolute;
+      font-size: 1.5em;
+      animation: floatUp 6s linear forwards;
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(100vh) scale(0.8); opacity: 1; }
+      to { transform: translateY(-10vh) scale(1.4); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="heart">💖</div>
+  <h1>Жаным 💕</h1>
+  <div id="text"></div>
+
+  <script>
+    const message = `Алтыным жаным, жаным соол ботам менин 
+Сені ренжіткенім үшін кешір жан ғашығым менің, алтын еркем ❤️  
+Жүрегім сол, жан жарым менің, ботам, қошақаным, күлігім, балапаным 
+Еркем менің, жан жүрегім, күнім, айым, жұлдызым, жарығым 
+Өмірімнің мәні, махаббатым менің, алтын кымбаттым 
+Кешірші мені, жүрек, жаным менің... `;
+
+    const textContainer = document.getElementById("text");
+    let i = 0;
+
+    function typeText() {
+      if (i < message.length) {
+        textContainer.textContent += message.charAt(i);
+        i++;
+        setTimeout(typeText, 50); // скорость печати
+      }
+    }
+
+    typeText();
+
+    // Плавающие эмодзи
+    const emojis = ["💖", "💘", "💞", "💕", "💓", "💗", , "🥰"];
+    function createEmoji() {
+      const el = document.createElement("div");
+      el.classList.add("floating");
+      el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      el.style.left = Math.random() * 100 + "vw";
+      el.style.animationDuration = (4 + Math.random() * 3) + "s";
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 6000);
+    }
+    setInterval(createEmoji, 700);
+  </script>
+
+</body>
+</html>
